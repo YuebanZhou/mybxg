@@ -34,23 +34,28 @@
     </div>
     
     <script src="/public/assets/jquery/jquery.min.js"></script>
+    <script src="/public/assets/jquery-cookie/jquery.cookie.js"></script>
     <script src="/public/assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
-        $('#loginBtn').click(function () {
+        
+        $('#loginBtn').click(function(){
             $.ajax({
-                type:'post',
-                url:'/api/login',
-                data:$('#loginForm').serialize(),
-                dataType:'json',
-                success:function (data) {
-                    if(data.code==200) {
-                        location.href='/main/index';
+                type : 'post',
+                url : '/api/login',
+                data : $('#loginForm').serialize(),
+                dataType : 'json',
+                success : function(data){
+                    if(data.code == 200){
+                        // 存储用户登录之后的信息
+                        $.cookie('loginInfo',JSON.stringify(data.result),{path:'/'});
+                        // 登录成功，跳转到主页面
+                        location.href = '/main/index';
                     }
-
+                    console.log(data)
                 }
-            })
-            return false;
-        })
+            });
+            return false;// 阻止默认行为
+        });
     </script>
 </body>
 </html>
