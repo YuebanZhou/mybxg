@@ -2,9 +2,9 @@ define(['jquery','template','cookie'],function($,template) {
   //NProgress.start();
   //NProgress.done();
   //控制左侧菜单的折叠展开
-  /*$('.navs ul').prev('a').on('click', function () {
+  $('.navs ul').prev('a').on('click', function () {
     $(this).next().slideToggle();
-  });*/
+  });
   //实现退出功能
   $('#logoutBtn').click(function () {
     $.ajax({
@@ -31,9 +31,9 @@ define(['jquery','template','cookie'],function($,template) {
   var loginInfo = $.cookie('loginInfo');
   loginInfo = loginInfo && JSON.parse(loginInfo);
   var tpl='<div class="avatar img-circle">'
-          +'<img src="{{tc_avatar}}">'
-        +'</div>'
-        +'<h4>{{tc_name}}</h4>';
+  +'<img src="{{tc_avatar}}">'
+  +'</div>'
+  +'<h4>{{tc_name}}</h4>';
   var html=template.render(tpl,loginInfo);
   $('.aside .profile').html(html);
   //$('.aside .profile img').attr('src',loginInfo.tc_avatar);
