@@ -37,6 +37,7 @@ define(['jquery','template','ckeditor','uploadify','region','datepicker','langua
       $('#settingsForm').validate({
         sendForm : false,
         valid : function(){
+          //console.log($(this).serialize());
           // 拼接籍贯信息
           var p = $('#p').find('option:selected').text();
           var c = $('#c').find('option:selected').text();
