@@ -22,7 +22,7 @@ define(['jquery','template','util','datepicker','language','validate','form'],fu
     $('#teacherInfo').html(html);
     submitForm('/api/teacher/add');
   }
-
+  //封装函数，表单验证
   function submitForm(url) {
     $('#teacherForm').validate({
       sendForm:false,

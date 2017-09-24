@@ -1,4 +1,4 @@
-define(['jquery','template','uploadify','region'],function ($,template) {
+define(['jquery','template','ckeditor','uploadify','region','datepicker','language','validate','form'],function ($,template,CKEDITOR) {
   $.ajax({
     type:'get',
     url:'/api/teacher/profile',
@@ -26,7 +26,41 @@ define(['jquery','template','uploadify','region'],function ($,template) {
       $('#pcd').region({
         url:'/public/assets/jquery-region/region.json',
       })
-
+      //处理富文本
+      CKEDITOR.replace('editor',{
+        toolbarGroups : [
+          { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
+          { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] }
+        ]
+      });
+      //表单提交功能
+      $('#settingsForm').validate({
+        sendForm : false,
+        valid : function(){
+          // 拼接籍贯信息
+          var p = $('#p').find('option:selected').text();
+          var c = $('#c').find('option:selected').text();
+          var d = $('#d').find('option:selected').text();
+          var hometown = p + '|' + c + '|' + d;
+          // 更新富文本内容
+          for(var instance in CKEDITOR.instances){
+            CKEDITOR.instances[instance].updateElement();
+          }
+          // 提交表单
+          $(this).ajaxSubmit({
+            type : 'post',
+            url : '/api/teacher/modify',
+            data : {tc_hometown : hometown},
+            dataType : 'json',
+            success : function(data){
+              if(data.code == 200){
+                // 刷新当前页面
+                location.reload();
+              }
+            }
+          });
+        }
+      });
 
     }
   })
