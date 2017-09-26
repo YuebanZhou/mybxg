@@ -66,12 +66,17 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
         img.Jcrop({
           aspectRatio : 2
         },function(){
+
           // 销毁当前实例
           nowCrop && nowCrop.destroy();
           nowCrop = this;
+          $('.thumb').html('');
           // 显示缩略图
           this.initComponent('Thumbnailer',{width : 240,height : 120,mythumb:'.thumb'});
-
+          $('.jcrop-thumb').css({
+            left:0,
+            top:0
+          })
           // 获取图片的宽度和高度
           var width = this.ui.stage.width;
           var height = this.ui.stage.height;
@@ -96,6 +101,7 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
           aInput.eq(3).val(c.h);
         });
       }
+
     }
   });
 
