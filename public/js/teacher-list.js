@@ -1,4 +1,4 @@
-define(['jquery','template','util','bootstrap'],function($,template,util){
+define(['jquery','template','util','bootstrap','state'],function($,template,util){
   util.setMenu(location.pathname);
   // 调用后台接口获取所有的讲师数据
   $.ajax({

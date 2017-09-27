@@ -1,4 +1,4 @@
-define(['jquery','template','util','datepicker','language','validate','form'],function($,template,util) {
+define(['jquery','template','util','datepicker','language','validate','form','state'],function($,template,util) {
   var tcId=util.qs('tc_id');
   if(tcId) {
     //编辑
@@ -31,7 +31,7 @@ define(['jquery','template','util','datepicker','language','validate','form'],fu
         $(this).ajaxSubmit({
           url:url,
           dataType:'json',
-          success:function() {
+          success:function(data) {
             if(data.code==200) {
               location.href='/teacher/list'
             }

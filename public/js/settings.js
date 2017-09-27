@@ -1,4 +1,4 @@
-define(['jquery','template','ckeditor','uploadify','region','datepicker','language','validate','form'],function ($,template,CKEDITOR) {
+define(['jquery','template','ckeditor','uploadify','region','datepicker','language','validate','form','state'],function ($,template,CKEDITOR) {
   $.ajax({
     type:'get',
     url:'/api/teacher/profile',

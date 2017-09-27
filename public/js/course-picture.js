@@ -106,3 +106,4 @@ define(['jquery','template','util','uploadify','jcrop','form'],function($,templa
   });
 
 });
+

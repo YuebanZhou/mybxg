@@ -1,4 +1,4 @@
-define(['jquery','template','util','form'],function($,template,util){
+define(['jquery','template','util','form','state'],function($,template,util){
   // 设置导航菜单选中
   util.setMenu(location.pathname);
   // 绑定事件
